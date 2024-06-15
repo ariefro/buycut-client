@@ -1,4 +1,5 @@
 import React from "react";
+import ShareBar from "./shareBar";
 
 interface ModalProps {
   isOpen: boolean;
@@ -27,7 +28,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, content }) => {
             &times;
           </button>
         </div>
-        <div className="mt-4 text-gray-700">{content}</div>
+        <div className="mt-4 mb-7 text-gray-700">{content}</div>
+        <ShareBar />
       </div>
     </div>
   );
