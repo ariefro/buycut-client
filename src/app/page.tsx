@@ -1,19 +1,23 @@
 "use client";
 
-import SearchBar from "@/components/searchBar";
+import SearchBar from "@/app/components/searchBar";
 import type { NextPage } from "next";
 import { useState } from "react";
-import axios from "@/app/utils/axiosInstance";
-import Modal from "@/components/modal";
+import Modal from "@/app/components/modal";
+import { searchBoycottedBrand } from "./services/brandService";
+import BoycottedList from "./components/boycottedList";
 
 const Home: NextPage = () => {
   const [searchResult, setSearchResult] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [keyword, setKeyword] = useState<string>("");
 
   const handleSearch = async (keyword: string) => {
     try {
-      const res = await axios.post("/products/search", { keyword });
-      setSearchResult(res.data.message);
+      setKeyword(keyword);
+
+      const res = await searchBoycottedBrand(keyword);
+      setSearchResult(res.message);
       setIsModalOpen(true);
     } catch (error) {
       const errorMessage =
@@ -40,6 +44,7 @@ const Home: NextPage = () => {
           content={searchResult}
         />
       )}
+      <BoycottedList keyword={keyword} />
     </div>
   );
 };
