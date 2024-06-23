@@ -32,19 +32,16 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
-      <h1 className="text-md text-black font-semibold mt-10 text-center px-4 sm:px-6 lg:px-8">
-        Mencari produk yang diboikot berdasarkan nama merek atau nama produk.
+    <div className="min-h-screen bg-primary flex flex-col items-center">
+      <h1 className="text-md lg:text-xl lg:w-1/2 text-black mt-10 text-center px-4 sm:px-6 lg:px-8">
+        Sebuah platform yang mempromosikan konsumerisme yang bijaksana dengan
+        memfasilitasi akses informasi mengenai perusahaan-perusahaan yang
+        mendukung atau tidak mendukung pendudukan ilegal Israel di Palestina.
       </h1>
-      <SearchBar onSearch={handleSearch} />
-      {searchResult && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          content={searchResult}
-        />
-      )}
-      <BoycottedList keyword={keyword} />
+      <div className="w-full max-w-4xl">
+        <SearchBar onSearch={handleSearch} />
+        <BoycottedList keyword={keyword} />
+      </div>
     </div>
   );
 };
