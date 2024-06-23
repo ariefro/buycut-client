@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
 import { fetchBoycottedBrands } from "../services/brandService";
+import Image from "next/image";
+import Modal from "./modal";
+
+interface Company {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  image_url: string;
+}
 
 interface Brand {
   id: number;
@@ -7,6 +17,9 @@ interface Brand {
   slug: string;
   description: string;
   image_url: string;
+  company: Company;
+  proof: string[];
+  type: string;
   created_at: string;
 }
 
@@ -15,8 +28,19 @@ interface BoycottedListProps {
 }
 
 const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
-  const [boycottedList, setBoycottedList] = useState<Brand[]>([]);
   const [loading, setLoading] = useState(true);
+  const [boycottedList, setBoycottedList] = useState<Brand[]>([]);
+  const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = (brand: Brand) => {
+    setSelectedBrand(brand);
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedBrand(null);
+  };
 
   const fetchBoycottedList = async (
     keyword: string = "",
@@ -41,33 +65,45 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
   }, [keyword]);
 
   return (
-    <div className="p-4 text-gray-500">
-      <h1 className="text-2xl font-bold mb-4 text-center">Boycotted Brands</h1>
+    <div className="text-gray-500 w-full p-7">
       {loading ? (
         <div className="flex justify-center items-center h-24">
           <p>Loading...</p>
         </div>
-      ) : boycottedList.length > 0 ? (
+      ) : boycottedList && boycottedList.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {boycottedList.map((brand, index) => (
             <div
-              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:cursor-pointer transition-shadow duration-300"
               key={brand.id}
+              onClick={(e) => {
+                e.preventDefault();
+                handleOpenModal(brand);
+              }}
             >
-              <div className="w-24 h-24 aspect-w-1 aspect-h-1">
-                <img
+              <div className="w-full h-44 flex items-center justify-center">
+                <Image
                   src={brand.image_url}
                   alt={brand.name}
-                  className="object-cover w-full h-full"
+                  width={192}
+                  height={192}
+                  className="object-contain w-full h-full"
                 />
               </div>
-              <div className="p-2">
+              <div className="pt-4 pb-2">
                 <h2 className="text-sm font-semibold mb-2 text-center">
                   {brand.name}
                 </h2>
               </div>
             </div>
           ))}
+          {selectedBrand && (
+            <Modal
+              isOpen={isModalOpen}
+              onClose={closeModal}
+              data={selectedBrand}
+            />
+          )}
         </div>
       ) : (
         <div className="flex justify-center items-center h-24">
