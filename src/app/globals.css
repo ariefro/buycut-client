@@ -2,32 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+  .bg-primary {
+    @apply bg-[#DAD3BE]
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+  .bg-secondary {
+      @apply bg-[#B7B597]
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .bg-tertiary {
+      @apply bg-[#6B8A7A]
+  }
+
+  .bg-quaternary {
+    @apply bg-[#254336]
+  }
+
+  .text-primary {
+    @apply text-[#222831]
+  }
+
+  .text-secondary {
+      @apply text-[#393E46]
+  }
+
+  .text-tertiary {
+      @apply text-[#EEEEEE]
+  }
+
+  .text-quaternary {
+    @apply text-[#00ADB5]
+  }
+
+  .about-content {
+    @apply h-full flex items-center justify-center transform transition-opacity duration-500
   }
 }
