@@ -21,8 +21,8 @@ const ShareBar: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className="text-gray-700 text-sm">
+    <div className="bg-tertiary">
+      <div className="text-gray-200 text-sm p-5">
         <p className="font-semibold">
           Suara Anda memiliki kekuatan yang luar biasa!
         </p>
@@ -41,7 +41,7 @@ const ShareBar: React.FC = () => {
           data-tooltip-content="Share on Twitter"
           data-tooltip-place="bottom"
         >
-          <BsTwitterX className="h-[18px] w-[18px] text-gray-500 hover:text-gray-900 duration-300 cursor-pointer" />
+          <BsTwitterX className="h-[18px] w-[18px] text-gray-300 hover:text-gray-100 duration-300 cursor-pointer" />
         </TwitterShareButton>
 
         <Tooltip id="facebook" />
@@ -52,7 +52,7 @@ const ShareBar: React.FC = () => {
           data-tooltip-content="Share on Facebook"
           data-tooltip-place="bottom"
         >
-          <BsFacebook className="h-[18px] w-[18px] text-gray-500 hover:text-gray-900 duration-300 cursor-pointer" />
+          <BsFacebook className="h-[18px] w-[18px] text-gray-300 hover:text-gray-100 duration-300 cursor-pointer" />
         </FacebookShareButton>
 
         <Tooltip id="whatsapp" />
@@ -63,13 +63,13 @@ const ShareBar: React.FC = () => {
           data-tooltip-content="Share on Whatsapp"
           data-tooltip-place="bottom"
         >
-          <BsWhatsapp className="h-[18px] w-[18px] text-gray-500 hover:text-gray-900 duration-300 cursor-pointer" />
+          <BsWhatsapp className="h-[18px] w-[18px] text-gray-300 hover:text-gray-100 duration-300 cursor-pointer" />
         </WhatsappShareButton>
 
         <button onClick={handleCopyUrl}>
           <Tooltip id="copy-url" />
           <BsLink45Deg
-            className="h-[18px] w-[18px] text-gray-500 hover:text-gray-900 duration-300 cursor-pointer"
+            className="h-[18px] w-[18px] text-gray-300 hover:text-gray-100 duration-300 cursor-pointer"
             data-tooltip-id="copy-url"
             data-tooltip-content="Copy URL"
             data-tooltip-place="bottom"
