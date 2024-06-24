@@ -19,23 +19,16 @@
     @apply bg-[#254336]
   }
 
-  .text-primary {
-    @apply text-[#222831]
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
-
-  .text-secondary {
-      @apply text-[#393E46]
-  }
-
-  .text-tertiary {
-      @apply text-[#EEEEEE]
-  }
-
-  .text-quaternary {
-    @apply text-[#00ADB5]
-  }
-
-  .about-content {
-    @apply h-full flex items-center justify-center transform transition-opacity duration-500
+  
+  .animate-spin {
+    animation: spin 1s linear infinite;
   }
 }

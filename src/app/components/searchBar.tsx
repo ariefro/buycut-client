@@ -17,7 +17,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     <div className="flex justify-center w-full mt-10 px-4 sm:px-6 lg:px-8">
       <input
         type="text"
-        className="border-2 text-sm text-black border-gray-300 px-4 py-2 rounded-full w-full"
+        className="border-2 text-sm text-black border-gray-300 px-4 py-3 rounded-full w-full"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyDown}
