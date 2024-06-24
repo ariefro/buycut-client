@@ -1,11 +1,13 @@
 import {
   BsFacebook,
   BsLink45Deg,
+  BsTelegram,
   BsTwitterX,
   BsWhatsapp,
 } from "react-icons/bs";
 import {
   FacebookShareButton,
+  TelegramShareButton,
   TwitterShareButton,
   WhatsappShareButton,
 } from "react-share";
@@ -13,7 +15,7 @@ import { toast } from "react-hot-toast";
 import { Tooltip } from "react-tooltip";
 
 const ShareBar: React.FC = () => {
-  const text = `Mendengar tip bagus dari seorang teman?\nBuycut membantu Anda untuk membuat pilihan yang tepat sebagai konsumen.\n\nLihat produk apa yang dihindari orang lain dan bergabunglah dengan gerakan ini!\n`;
+  const text = `Buycut hadir untuk membantu kamu membuat pilihan yang tepat sebagai konsumen.\n\nYuk, cek produk-produk yang dihindari banyak orang dan jadi bagian dari gerakan ini!\n`;
 
   const handleCopyUrl = () => {
     navigator.clipboard.writeText(`${text}\n${process.env.NEXT_PUBLIC_URL}`);
@@ -65,6 +67,17 @@ const ShareBar: React.FC = () => {
         >
           <BsWhatsapp className="h-[18px] w-[18px] text-gray-300 hover:text-gray-100 duration-300 cursor-pointer" />
         </WhatsappShareButton>
+
+        <Tooltip id="telegram" />
+        <TelegramShareButton
+          url={`${process.env.NEXT_PUBLIC_URL}`}
+          title={text}
+          data-tooltip-id="telegram"
+          data-tooltip-content="Share on telegram"
+          data-tooltip-place="bottom"
+        >
+          <BsTelegram className="h-[18px] w-[18px] text-gray-300 hover:text-gray-100 duration-300 cursor-pointer" />
+        </TelegramShareButton>
 
         <button onClick={handleCopyUrl}>
           <Tooltip id="copy-url" />
