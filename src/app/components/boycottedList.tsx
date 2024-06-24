@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { fetchBoycottedBrands } from "../services/brandService";
 import Image from "next/image";
 import Modal from "./modal";
+import Loading from "./loading";
+import Link from "next/link";
 
 interface Company {
   id: number;
@@ -67,9 +69,7 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
   return (
     <div className="text-gray-500 w-full p-7">
       {loading ? (
-        <div className="flex justify-center items-center h-24">
-          <p>Loading...</p>
-        </div>
+        <Loading />
       ) : boycottedList && boycottedList.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {boycottedList.map((brand, index) => (
@@ -106,10 +106,16 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
           )}
         </div>
       ) : (
-        <div className="flex justify-center items-center h-24">
-          <p className="text-center text-gray-500">
+        <div className="flex flex-col justify-center items-center h-24">
+          <p className="text-center text-gray-700">
             Tidak ada kecocokan yang ditemukan
           </p>
+          <Link
+            href={"https://forms.gle/aH7uU9uVqW3v6sRv8"}
+            className="underline text-[#6B8A7A] hover:text-[#254336]"
+          >
+            Sarankan merek untuk ditambahkan
+          </Link>
         </div>
       )}
     </div>
