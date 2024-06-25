@@ -56,7 +56,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center p-7">
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center p-7 z-50">
       <div className={`bg-white sm:w-3/4 lg:w-1/3 rounded-md shadow-lg`}>
         <div className="flex justify-between items-center p-5">
           <h2 className="text-xl font-bold"></h2>
@@ -84,7 +84,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, data }) => {
               </p>
             </div>
           )}
-          {data.type == "product" && (
+          {data.type == "brand" && (
             <div className="w-full">
               <div className="flex justify-center items-center space-x-5">
                 <Image

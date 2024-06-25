@@ -71,17 +71,17 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
       {loading ? (
         <Loading />
       ) : boycottedList && boycottedList.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {boycottedList.map((brand, index) => (
             <div
-              className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:cursor-pointer transition-shadow duration-300"
+              className="bg-white flex items-center space-x-3 px-7 sm:flex-col sm:space-x-0 border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg hover:cursor-pointer transition-transform duration-300 transform hover:scale-105"
               key={brand.id}
               onClick={(e) => {
                 e.preventDefault();
                 handleOpenModal(brand);
               }}
             >
-              <div className="w-full h-44 flex items-center justify-center">
+              <div className="h-16 py-2 w-1/5 sm:w-full sm:h-44 flex items-center justify-center">
                 <Image
                   src={brand.image_url}
                   alt={brand.name}
@@ -90,8 +90,8 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
                   className="object-contain w-full h-full"
                 />
               </div>
-              <div className="pt-4 pb-2">
-                <h2 className="text-sm font-semibold mb-2 text-center">
+              <div className="sm:pt-4 sm:pb-2">
+                <h2 className="text-sm font-semibold sm:mb-2 text-center">
                   {brand.name}
                 </h2>
               </div>
