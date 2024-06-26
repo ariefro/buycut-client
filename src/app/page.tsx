@@ -31,6 +31,7 @@ const Home: React.FC = () => {
   };
 
   const handleScroll = () => {
+    // Show scroll-to-top button when SearchBar is sticky
     if (window.scrollY > 200) {
       setShowScrollToTop(true);
     } else {

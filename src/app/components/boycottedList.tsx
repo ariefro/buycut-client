@@ -4,6 +4,7 @@ import Image from "next/image";
 import Modal from "./modal";
 import Loading from "./loading";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 interface Company {
   id: number;
@@ -51,12 +52,14 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
   ) => {
     try {
       setLoading(true);
+      // const res = await fetchBoycottedCompanies(page, perPage);
       const res = await fetchBoycottedBrands(page, perPage, keyword);
       setBoycottedList(res.data);
     } catch (error) {
       const errorMessage =
         (error as any).response?.data?.message || "An error occurred";
       console.log(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }

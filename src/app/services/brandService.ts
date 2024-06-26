@@ -11,4 +11,11 @@ export const fetchBoycottedBrands = async (page = 1, perPage = 10, keyword?: str
     });
     return response.data;
 };
+
+export const fetchBoycottedCompanies = async (page = 1, perPage = 24) => {
+    const response = await axios.get('/companies', {
+      params: { page, perPage }
+    });
+    return response.data;
+};
   
