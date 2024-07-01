@@ -18,4 +18,9 @@ export const fetchBoycottedCompanies = async (page = 1, perPage = 24) => {
     });
     return response.data;
 };
+
+export const fetchCompanyDetail = async (id: string) => {
+    const response = await axios.get(`/companies/${id}`);
+    return response.data;
+};
   
