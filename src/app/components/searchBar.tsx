@@ -14,15 +14,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex justify-center w-full mt-10 px-4 sm:px-6 lg:px-8">
-      <input
-        type="text"
-        className="border-2 text-sm text-black border-gray-300 px-4 py-3 rounded-full w-full"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="Cari merek"
-      />
+    <div className="sticky top-0 bg-white z-50 shadow-md">
+      <div className="flex items-center justify-between p-4">
+        <div className="flex-grow mx-4">
+          <input
+            type="text"
+            className="border-2 text-sm text-black border-gray-300 px-4 py-2 rounded-full w-full"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Cari merek"
+          />
+        </div>
+      </div>
     </div>
   );
 };
