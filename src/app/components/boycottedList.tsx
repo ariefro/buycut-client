@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { fetchBoycottedBrands } from "../services/brandService";
+import {
+  fetchBoycottedBrands,
+  fetchBoycottedCompanies,
+} from "../services/brandService";
 import Image from "next/image";
 import Modal from "./modal";
 import Loading from "./loading";
@@ -12,6 +15,8 @@ interface Company {
   slug: string;
   description: string;
   image_url: string;
+  brands: Brand[];
+  proof: string[];
 }
 
 interface Brand {
@@ -52,8 +57,8 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
   ) => {
     try {
       setLoading(true);
-      // const res = await fetchBoycottedCompanies(page, perPage);
-      const res = await fetchBoycottedBrands(page, perPage, keyword);
+      const res = await fetchBoycottedCompanies(page, perPage);
+      // const res = await fetchBoycottedBrands(page, perPage, keyword);
       setBoycottedList(res.data);
     } catch (error) {
       const errorMessage =
@@ -81,7 +86,11 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
               key={brand.id}
               onClick={(e) => {
                 e.preventDefault();
-                handleOpenModal(brand);
+                if (brand.type === "brand") {
+                  handleOpenModal(brand);
+                } else {
+                  window.location.href = `/company/${brand.id}`;
+                }
               }}
             >
               <div className="h-16 py-2 w-1/5 sm:w-full sm:h-44 flex items-center justify-center">
