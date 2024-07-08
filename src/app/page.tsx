@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const handleSearch = async (keyword: string) => {
     try {
       setKeyword(keyword);
-      await searchBoycottedBrand(keyword);
+      // await searchBoycottedBrand(keyword);
     } catch (error) {
       const errorMessage =
         (error as any).response?.data?.message || "An error occurred";

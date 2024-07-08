@@ -57,9 +57,14 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
   ) => {
     try {
       setLoading(true);
-      const res = await fetchBoycottedCompanies(page, perPage);
-      // const res = await fetchBoycottedBrands(page, perPage, keyword);
-      setBoycottedList(res.data);
+
+      if (keyword === "") {
+        const res = await fetchBoycottedCompanies(page, perPage);
+        setBoycottedList(res.data);
+      } else {
+        const res = await fetchBoycottedBrands(page, perPage, keyword);
+        setBoycottedList(res.data);
+      }
     } catch (error) {
       const errorMessage =
         (error as any).response?.data?.message || "An error occurred";
