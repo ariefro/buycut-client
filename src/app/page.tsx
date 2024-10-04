@@ -2,21 +2,19 @@
 
 import React, { useState, useEffect } from "react";
 import SearchBar from "@/app/components/searchBar";
-import { searchBoycottedBrand } from "./services/brandService";
 import BoycottedList from "./components/boycottedList";
 
 const Home: React.FC = () => {
-  const [searchResult, setSearchResult] = useState<string | null>(null);
   const [keyword, setKeyword] = useState<string>("");
   const [showScrollToTop, setShowScrollToTop] = useState<boolean>(false);
 
   const handleSearch = async (keyword: string) => {
     try {
       setKeyword(keyword);
-      // await searchBoycottedBrand(keyword);
     } catch (error) {
       const errorMessage =
         (error as any).response?.data?.message || "An error occurred";
+      console.log(errorMessage);
     }
   };
 
@@ -46,12 +44,6 @@ const Home: React.FC = () => {
   return (
     <div className="bg-white">
       <div className="min-h-screen flex max-w-7xl mx-auto flex-col items-center">
-        <h1 className="text-md lg:text-xl text-black my-10 text-center px-4 sm:px-6 lg:px-8 font-semibold">
-          Sebuah platform yang mempromosikan konsumerisme yang bijaksana dengan
-          memfasilitasi akses informasi mengenai perusahaan-perusahaan yang
-          mendukung pendudukan ilegal Israel di Palestina.
-        </h1>
-
         <div className="w-full space-y-6">
           <SearchBar onSearch={handleSearch} />
           <BoycottedList keyword={keyword} />

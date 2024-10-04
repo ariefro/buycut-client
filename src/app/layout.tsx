@@ -7,8 +7,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "BuyCut",
-  description:
-    "Sebuah platform yang mempromosikan konsumerisme yang bijaksana dengan memfasilitasi akses informasi mengenai perusahaan-perusahaan yang mendukung pendudukan ilegal Israel di Palestina.",
 };
 
 export default function RootLayout({

@@ -130,6 +130,7 @@ const BoycottedList: React.FC<BoycottedListProps> = ({ keyword }) => {
           <Link
             href={"https://forms.gle/aH7uU9uVqW3v6sRv8"}
             className="underline text-[#6B8A7A] hover:text-[#254336]"
+            target="_blank"
           >
             Sarankan merek untuk ditambahkan
           </Link>
